@@ -267,7 +267,7 @@ class RPMObjectsProcessing:
         elif obj_type == "multi":
             prop_list = "objectName presentValue stateText description"
         elif obj_type == "loop":
-            prop_list = "objectName presentValue description ..."
+            prop_list = "objectName presentValue description"
         elif obj_type == "characterstringValue":
             prop_list = "objectName presentValue"
         elif obj_type == "datetime-value":
@@ -476,6 +476,18 @@ class ReadPropertyMultiple(ReadUtilsMixin, DiscoveryUtilsMixin, RPMObjectsProces
                             raise
                         except ValueError as error:
                             # high limit ?
+                            request_parts = big_request[0].split(" ")
+                            loop_index = request_parts.index("loop", 1)
+                            request_parts.insert(
+                                loop_index + 1, "...")
+                            request = " ".join(request_parts)
+                            # Try again 
+                            await self.read_multiple(
+                                points_list,
+                                points_per_request=1,
+                                discover_request=discover_request,
+                            )
+                            
                             self._log.warning(
                                 f"Got a value error of {error} for request : {request}"
                             )
