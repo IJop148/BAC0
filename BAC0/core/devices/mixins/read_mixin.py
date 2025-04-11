@@ -454,7 +454,7 @@ class ReadPropertyMultiple(ReadUtilsMixin, DiscoveryUtilsMixin, RPMObjectsProces
             )
         else:
             if not self.properties.segmentation_supported:
-                points_per_request = 25
+                points_per_request = 20
 
             if discover_request[0]:
                 values = []
