@@ -184,7 +184,7 @@ class DiscoveryUtilsMixin:
                     )
         return objList
 
-    async def _discoverPoints(self, custom_object_list=None):
+    async def _discoverPoints(self, custom_object_list=None, ppr=5):
         objList = await self.read_objects_list(custom_object_list=custom_object_list)
 
         points = []
@@ -207,7 +207,7 @@ class DiscoveryUtilsMixin:
         )
         points.extend(
             await self._process_new_objects(
-                obj_cls=NumericPoint, obj_type="loop", objList=objList
+                obj_cls=NumericPoint, obj_type="loop", objList=objList, points_per_request=ppr
             )
         )
         points.extend(
@@ -454,7 +454,8 @@ class ReadPropertyMultiple(ReadUtilsMixin, DiscoveryUtilsMixin, RPMObjectsProces
             )
         else:
             if not self.properties.segmentation_supported:
-                points_per_request = 17
+                self.log("Segmentation not supported", level="warning")
+                points_per_request = 1
 
             if discover_request[0]:
                 values = []
