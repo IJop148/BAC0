@@ -267,7 +267,7 @@ class RPMObjectsProcessing:
         elif obj_type == "multi":
             prop_list = "objectName presentValue stateText description"
         elif obj_type == "loop":
-            prop_list = "objectName presentValue description"
+            prop_list = "objectName presentValue description ..."
         elif obj_type == "characterstringValue":
             prop_list = "objectName presentValue"
         elif obj_type == "datetime-value":
