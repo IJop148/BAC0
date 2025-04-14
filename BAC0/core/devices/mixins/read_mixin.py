@@ -277,7 +277,7 @@ class RPMObjectsProcessing:
 
         for points, address in retrieve_type(objList, obj_type):
             if obj_type == "loop" and len(request) > 0:
-                request.append(f"REMOVETEXTLATER {points} {address} {prop_list} ")
+                request.append(f"{points} {address} {prop_list} REMOVETEXTLATER")
             else:
                 request.append(f"{points} {address} {prop_list} ")
 
