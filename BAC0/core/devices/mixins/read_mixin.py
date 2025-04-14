@@ -284,10 +284,10 @@ class RPMObjectsProcessing:
         def _find_propid_index(key):
             self.log(f"Prop List : {prop_list}", level="debug")
             _prop_list = prop_list.split(" ")
+            if _prop_list[0] == "REMOVETEXTLATER":
+                _prop_list.pop(0)
             for i, each in enumerate(_prop_list):
                 if key == each:
-                    if(_prop_list[i] == "REMOVETEXTLATER"):
-                        continue
                     return i
             raise KeyError(f"{key} not part of property list")
 
