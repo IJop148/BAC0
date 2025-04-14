@@ -286,6 +286,8 @@ class RPMObjectsProcessing:
             _prop_list = prop_list.split(" ")
             for i, each in enumerate(_prop_list):
                 if key == each:
+                    if(_prop_list[i] == "REMOVETEXTLATER"):
+                        continue
                     return i
             raise KeyError(f"{key} not part of property list")
 
