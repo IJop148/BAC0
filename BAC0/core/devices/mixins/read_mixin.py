@@ -276,7 +276,10 @@ class RPMObjectsProcessing:
             raise ValueError("Unsupported objectType")
 
         for points, address in retrieve_type(objList, obj_type):
-            request.append(f"{points} {address} {prop_list} ")
+            if obj_type == "loop" and len(request) > 0:
+                request.append(f"REMOVETEXTLATER {points} {address} {prop_list} ")
+            else:
+                request.append(f"{points} {address} {prop_list} ")
 
         def _find_propid_index(key):
             self.log(f"Prop List : {prop_list}", level="debug")
