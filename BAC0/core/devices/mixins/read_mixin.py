@@ -253,7 +253,7 @@ class DiscoveryUtilsMixin:
 
 class RPMObjectsProcessing:
     async def _process_new_objects(
-        self, obj_cls=None, obj_type: str = "", objList=None, points_per_request=5
+        self, obj_cls=None, obj_type: str = "", objList=None, points_per_request=15
     ):
         """
         Template to generate BAC0 points instances from information coming from the network.
